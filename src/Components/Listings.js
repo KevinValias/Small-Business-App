@@ -7,12 +7,12 @@ import {
   TableCell,
   TableRow,
 } from "@material-ui/core";
-// import bizz from '../bizz.json';
-// import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
+import { Link } from "react-router-dom";
 
-function Listing(props) {
+const Listing = (props) => {
   return (
-    <Container maxWidth='lg' className='car-container'>
+    <Container maxWidth="lg" className="car-container">
       <Table>
         <TableHead>
           <TableRow>
@@ -24,17 +24,18 @@ function Listing(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {bizz.map((bizz, idx) => (
-            <TableRow key={bizz.name}>
-              <TableCell component='th' scope='row'>
-                {bizz.name}
-              </TableCell>
-              <TableCell>{bizz['description']}</TableCell>
-              <TableCell>{bizz['hours']}</TableCell>
-              <TableCell>{bizz['address']}</TableCell>
+          {props.bizzes.map((bizz, id) => (
+            <TableRow key={bizz.id}>
               <TableCell>
-                <DeleteIcon onClick{() => props.removeCar(idx)}
-                className='icon text-red'
+                <Link to={`/bizz/${bizz.id}`}>{bizz["name"]}</Link>
+              </TableCell>
+              <TableCell>{bizz["description"]}</TableCell>
+              <TableCell>{bizz["hours"]}</TableCell>
+              <TableCell>{bizz["address"]}</TableCell>
+              <TableCell>
+                <DeleteIcon
+                  onClick={() => props.removeBizz(id)}
+                  style={{ color: "red" }}
                 />
               </TableCell>
             </TableRow>

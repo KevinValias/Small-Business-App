@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-// import { Redirect } from "react-router";
+import { Redirect } from "react-router";
 import { TextField, Button, Container } from "@material-ui/core";
 
 class App extends Component {
   state = {
     username: "",
     password: "",
+    redirectHome: false,
   };
 
   handleTextChange = (e) => {
@@ -16,24 +17,21 @@ class App extends Component {
 
   login = (e) => {
     e.preventDefault();
-    // set cookie here
     document.cookie = "loggedIn=true;max-age=60*1000";
-    window.location.replace("/");
+    this.props.setUser(this.state.username);
+    // console.log(this.state.username);
+    this.setState({ redirecthome: true });
+    // window.location.replace("/");
   };
 
   render() {
+    if (this.state.redirectHome) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="App">
         <Container maxWidth="sm">
           <form className="login-form" onSubmit={this.login}>
-            <TextField
-              required
-              onChange={this.handleTextChange}
-              value={this.state.email}
-              name="email"
-              label="Email"
-              type="text"
-            />
             <TextField
               required
               onChange={this.handleTextChange}
@@ -50,12 +48,7 @@ class App extends Component {
               label="Password"
               type="password"
             />
-            <Button
-              type="submit"
-              className="login-button"
-              variant="contained"
-              color="primary"
-            >
+            <Button type="submit" className="login-button" variant="contained">
               Login
             </Button>
           </form>

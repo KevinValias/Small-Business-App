@@ -2,16 +2,18 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
-import Navigation from "./components/Navigation";
+import Navigation from "./Containers/Navigation";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
       <BrowserRouter>
         <Navigation />
         <Router />
       </BrowserRouter>
-    </div>
+    </Provider>
   );
 }
 
