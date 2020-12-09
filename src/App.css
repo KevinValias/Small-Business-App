@@ -59,6 +59,8 @@ nav-list-item {
 
 .nav-list-item:hover {
   cursor: pointer;
+  background-color: rgb(85, 85, 233);
+  border-radius: 50%;
 }
 
 .car-container {
