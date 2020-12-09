@@ -4,7 +4,7 @@ import Map from "./Map";
 
 const Details = (props) => {
   const id = props.match.params.id;
-  const bizz = props.bizzes.find((bizz) => bizz.id == id);
+  const bizz = props.bizzes.find((bizz) => (bizz.id = id));
   console.log(id);
   return (
     <Container maxWidth="sm" className="car-container">
